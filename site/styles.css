@@ -1,0 +1,102 @@
+@import url("layout.css");
+@import url("sections.css");
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.975 0.012 80);
+  --foreground: oklch(0.24 0.025 160);
+  --card: oklch(0.995 0.006 80);
+  --card-foreground: var(--foreground);
+  --primary: oklch(0.42 0.06 165);
+  --primary-foreground: oklch(0.98 0.012 80);
+  --secondary: oklch(0.93 0.02 80);
+  --muted: oklch(0.94 0.018 80);
+  --muted-foreground: oklch(0.47 0.025 160);
+  --accent: oklch(0.62 0.12 55);
+  --accent-foreground: oklch(0.99 0.01 80);
+  --border: oklch(0.88 0.02 80);
+  --ring: oklch(0.62 0.12 55);
+  --tint: oklch(0.95 0.02 120);
+  --glass: oklch(0.99 0.008 80 / 0.75);
+  --shadow: 0 1px 2px oklch(0.3 0.03 160 / 0.06), 0 18px 40px -20px oklch(0.3 0.04 160 / 0.25);
+  --glow: oklch(0.62 0.12 55 / 0.35);
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --sky-top: oklch(0.84 0.06 60);
+  --sky-bottom: oklch(0.93 0.035 80);
+  --hill-far: oklch(0.62 0.05 160);
+  --hill-near: oklch(0.45 0.06 165);
+  --wall: oklch(0.9 0.03 75);
+  --roof: oklch(0.32 0.04 165);
+  --window: oklch(0.82 0.12 75);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.19 0.018 165);
+    --foreground: oklch(0.94 0.015 80);
+    --card: oklch(0.23 0.02 165);
+    --primary: oklch(0.74 0.08 160);
+    --primary-foreground: oklch(0.18 0.02 165);
+    --secondary: oklch(0.27 0.02 165);
+    --muted: oklch(0.26 0.02 165);
+    --muted-foreground: oklch(0.75 0.02 100);
+    --accent: oklch(0.74 0.12 60);
+    --accent-foreground: oklch(0.18 0.02 165);
+    --border: oklch(0.32 0.02 165);
+    --tint: oklch(0.215 0.02 160);
+    --glass: oklch(0.24 0.02 165 / 0.75);
+    --shadow: 0 1px 2px oklch(0 0 0 / 0.3), 0 18px 40px -20px oklch(0 0 0 / 0.6);
+    --sky-top: oklch(0.3 0.06 270);
+    --sky-bottom: oklch(0.42 0.07 40);
+    --hill-far: oklch(0.33 0.04 170);
+    --hill-near: oklch(0.25 0.03 170);
+    --wall: oklch(0.55 0.03 70);
+    --roof: oklch(0.2 0.02 170);
+    --window: oklch(0.85 0.14 80);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; margin: 0 0 0.75rem; font-weight: 560; }
+h1 { font-size: clamp(2.5rem, 5.5vw, 4.25rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: 1.35rem; }
+p { margin: 0 0 1rem; text-wrap: pretty; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; border-radius: 6px; }
+
+.container { width: min(72rem, 100% - 2.5rem); margin-inline: auto; }
+.narrow { width: min(46rem, 100% - 2.5rem); }
+.section { padding-block: clamp(4.5rem, 10vw, 7.5rem); }
+.section-tint { background: var(--tint); }
+.section-head { max-width: 40rem; margin-bottom: 3rem; & p:last-child { color: var(--muted-foreground); } }
+.eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+.lede { font-size: 1.15rem; color: var(--muted-foreground); max-width: 34rem; }
+.muted { color: var(--muted-foreground); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 48px; padding: 0 1.4rem; border-radius: 999px; border: 1px solid transparent;
+  font: 700 0.95rem var(--font-sans); text-decoration: none; cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+  &:active { transform: translateY(1px) scale(0.98); }
+}
+.btn-primary { background: var(--primary); color: var(--primary-foreground); box-shadow: 0 12px 30px -14px var(--primary); &:hover { box-shadow: 0 16px 40px -14px var(--primary); transform: translateY(-1px); } }
+.btn-ghost { border-color: var(--border); background: var(--card); &:hover { background: var(--secondary); } }
+.btn-sm { min-height: 44px; padding: 0 1.1rem; }
+.btn-block { width: 100%; }
+
+.card { background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+.glass-card { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 999px; box-shadow: var(--shadow); }
